@@ -1,0 +1,18 @@
+services:
+
+  kave:
+
+    container_name: kave-tags
+
+    build: .
+
+    restart: unless-stopped
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - .env.production
+
+    volumes:
+      - ./logs:/app/logs
