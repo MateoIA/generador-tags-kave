@@ -1,0 +1,204 @@
+:root {
+
+    --fama: #007D8A;
+    --fama-dark: #006670;
+    --fama-light: #E8F5F6;
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1f4f5,
+            #e8eeee
+        );
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.container {
+
+    width: 100%;
+    max-width: 520px;
+}
+
+.card {
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+h1 {
+
+    color: var(--fama);
+
+    text-align: center;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+
+    text-align: center;
+
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+.form-group {
+
+    margin-bottom: 20px;
+}
+
+label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+input:focus {
+
+    outline: none;
+
+    border-color: var(--fama);
+
+    box-shadow:
+        0 0 0 4px rgba(0, 125, 138, 0.15);
+}
+
+button {
+
+    width: 100%;
+
+    background: var(--fama);
+
+    color: white;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+button:hover {
+
+    background: var(--fama-dark);
+}
+
+button:active {
+
+    transform: scale(0.98);
+}
+
+#resultado {
+
+    margin-top: 20px;
+}
+
+.mensaje {
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+.mensaje.ok {
+
+    background: #e9f8ec;
+
+    color: #1f6b1f;
+
+    border: 1px solid #bde4c4;
+}
+
+.mensaje.error {
+
+    background: #fdecec;
+
+    color: #b91c1c;
+
+    border: 1px solid #f5b4b4;
+}
+
+.logo-container {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+.logo {
+
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 25px auto;
+}
+
+footer {
+
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e5e5;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+}

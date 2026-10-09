@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Etiquetas Kave</title>
+
+   <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <div class="card">
+
+            <div class="logo-container">
+                <img
+                    src="/img/logo-fama.png"
+                    alt="Fama Sofás"
+                    class="logo">
+            </div>
+
+            <p class="subtitle">
+                Exportación CSV para etiquetas de tags Kave Home
+            </p>
+
+            <div class="form-group">
+
+                <label for="desde">
+                    Pedido desde
+                </label>
+
+                <input
+                    type="number"
+                    id="desde"
+                    placeholder="Ejemplo: 2381"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="hasta">
+                    Pedido hasta
+                </label>
+
+                <input
+                    type="number"
+                    id="hasta"
+                    placeholder="Ejemplo: 2389"
+                    required>
+
+            </div>
+
+            <button onclick="generarCSV()">
+                Generar CSV
+            </button>
+
+            <div id="resultado"></div>
+             <footer>
+                Fama Sofás<br>
+                Generador tags Kave v1.0
+            </footer>
+        </div>
+
+    </div>
+
+    <script>
+
+        async function generarCSV() {
+
+            const desde =
+                document.getElementById('desde').value;
+
+            const hasta =
+                document.getElementById('hasta').value;
+
+            const resultado =
+                document.getElementById('resultado');
+
+            if (!desde || !hasta) {
+
+                resultado.className =
+                    'mensaje error';
+
+                resultado.innerHTML =
+                    'Debes indicar ambos pedidos.';
+
+                return;
+            }
+
+            resultado.className =
+                'mensaje';
+
+            resultado.innerHTML =
+                '⏳ Generando CSV...';
+
+            try {
+
+                const response =
+                    await fetch(
+                        `/kave/info?desde=${desde}&hasta=${hasta}`
+                    );
+
+                const data =
+                    await response.json();
+
+                if (!data.ok) {
+
+                    resultado.className =
+                        'mensaje error';
+
+                    resultado.innerHTML =
+                        'Error generando CSV.';
+
+                    return;
+                }
+
+                resultado.className =
+                    'mensaje ok';
+
+                resultado.innerHTML =
+                    `✅ CSV generado correctamente<br><br>
+
+                    <strong>Pedidos:</strong>
+                    ${desde} - ${hasta}<br>
+
+                    <strong>Total líneas exportadas:</strong>
+                    ${data.lineas}<br>
+
+                    <strong>Archivo:</strong>
+                    kave_home_${desde}_${hasta}.csv`;
+
+                setTimeout(() => {
+
+                    window.location =
+                        `/kave/csv?desde=${desde}&hasta=${hasta}`;
+
+                }, 500);
+
+            } catch (err) {
+
+                resultado.className =
+                    'mensaje error';
+
+                resultado.innerHTML =
+                    `❌ ${err.message}`;
+
+            }
+        }
+
+    </script>
+   
+</body>
+
+</html>
