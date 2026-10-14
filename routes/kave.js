@@ -237,32 +237,28 @@ router.get('/csv', async (req, res) => {
         res.write('\uFEFF');
 
         res.write(
-            'PEDIDO;LINEA;REFERENCIA;ARTICULO;COD_SKU;TITULO;VERSION;DESCRIPCION_ART_SKU;TELA;EAN;COD_BARRA;TAG2;NO_ORDEN\r\n'
+            '"PEDIDO","LINEA","REFERENCIA","ARTICULO","COD_SKU","TITULO","VERSION","DESCRIPCION_ART_SKU","TELA","EAN","COD_BARRA","TAG2","NO_ORDEN"\r\n'
         );
 
         rows.forEach(row => {
 
             const csvRow = [
+                row.PEDIDO ?? '',
+                row.LINEA ?? '',
+                row.REFERENCIA ?? '',
+                row.ARTICULO ?? '',
+                row.COD_SKU ?? '',
+                row.TITULO ?? '',
+                row.VERSION ?? '',
+                row.DESCRIPCION_ART_SKU ?? '',
+                row.TELA ?? '',
+                row.EAN ?? '',
+                row.COD_BARRA ?? '',
+                row.TAG2 ?? '',
+                row.NO_ORDEN ?? ''
+            ];
 
-                row.PEDIDO,
-                row.LINEA,
-                row.REFERENCIA,
-                row.ARTICULO,
-                row.COD_SKU,
-                row.TITULO,
-                row.VERSION,
-                row.DESCRIPCION_ART_SKU,
-                row.TELA,
-                row.EAN,
-                row.COD_BARRA,
-                row.TAG2,
-                row.NO_ORDEN
-
-            ].map(escapeCsv);
-
-            res.write(
-                csvRow.join(';') + '\r\n'
-            );
+            res.write(csvRow.join(',') + '\r\n');
 
         });
 
